@@ -1,0 +1,44 @@
+body, html {
+    background-color: rgb(30, 31, 33);
+    font-family: "Cousine", monospace;
+}
+
+#header {
+    width: 95%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Clear floats after the columns */
+#header:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#h-lft > *, #h-rgt > * {
+    color: white;
+    display: inline;
+    font-size: 18px;
+}
+
+#h-lft > *::after, #h-rgt > *::before {
+    content: "\00a0\00a0";
+}
+
+#h-lft {
+    float: left;
+}
+
+#h-rgt {
+    float: right;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+a::after {
+    content: "\00a0\2197";
+}
