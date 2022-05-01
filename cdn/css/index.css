@@ -1,4 +1,5 @@
 body, html {
+    color: white;
     background-color: rgb(30, 31, 33);
     font-family: "Cousine", monospace;
 }
@@ -9,8 +10,21 @@ body, html {
     padding: 20px;
 }
 
-/* Clear floats after the columns */
 #header:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#btm {
+    width: 95%;
+    margin: auto;
+    padding: 20px;
+    position: fixed;
+    top: calc(100% - 90.33px);
+}
+
+#btm:after {
     content: "";
     display: table;
     clear: both;
@@ -35,10 +49,18 @@ body, html {
 }
 
 a, a:visited {
+    font-weight: bold;
     text-decoration: none;
     color: white;
 }
 
-a::after {
+a:not(#unc)::after {
     content: "\00a0\2197";
+}
+
+#contentmain {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
 }
