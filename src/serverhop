@@ -9,7 +9,7 @@ for _, v in ipairs(game:GetService("HttpService"):JSONDecode(game:HttpGetAsync("
 end
 
 if #x > 0 then
-    game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, x[math.random(1, #x)])
+    return true, x
 else
-    return print("Umbra | Couldn't find a server to hop to")
+    return false
 end
