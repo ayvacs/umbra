@@ -1,0 +1,30 @@
+local file = setmetatable({}, {
+	__index = function(t, i)
+        local i = tostring(i)
+		--warn("Umbra | [ERROR] Your script executor does not support the function [" .. i .. "], or has a different name for it. If your executor supports a similar function, please get into contact with us; otherwise, ask your executor's creators to support the 'Unified Naming Convention'. You may find more information at the V3rm thread [1164818].")
+        
+        local msg = string.format("The function %s does not exist, or your script executor does not support the Unified Naming Convention which is required for Umbra to start. Please read V3rm thread [1164818].", i)
+        warn("msg")
+        notify.str(msg)
+        
+        return nil, msg
+	end
+})
+
+for i, v in pairs({
+    appendfile = appendfile or nil,
+	delfile = delfile or nil,
+	delfolder = delfolder or nil,
+	isfile = isfile or nil,
+	isfolder = isfolder or nil,
+	listfiles = listfiles or nil,
+	makefolder = makefolder or nil,
+	readfile = readfile or nil,
+	writefile = writefile or nil
+}) do
+    pcall(function()
+        file[i] = v
+    end)
+end
+
+return file
