@@ -1,0 +1,102 @@
+-- clone initial table lib:
+function tc(t)
+	local t1 = {}
+	for i, v in pairs(t) do
+		if type(v) == "table" then
+			v = tc(v)
+		end
+		t1[i] = v
+	end
+	return t1
+end
+local tab = tc(table)
+tc = nil
+
+
+-- Functions
+
+
+
+function tab.copy(t)
+	local t1 = {}
+	for i, v in pairs(t) do
+		if type(v) == "table" then
+			v = tab.copy(v)
+		end
+		t1[i] = v
+	end
+	return t1
+end
+
+function tab.random(t)
+	return t[math.random(#t)]
+end
+
+function tab.contains(t, c)
+	for i, v in pairs(t) do
+		if v == c then
+			return true
+		end
+	end
+
+	return false
+end
+
+function tab.concat(t1, t2)
+	local t3 = {}
+	for i, v in pairs(t1) do
+		t3[#t3+1] = v
+	end
+	for i, v in pairs(t2) do
+		t3[#t3+1] = v
+	end
+	return t3
+end
+
+-- prefix or suffix all STRING values in a table or array. will work with strings and anything that can be converted to strings.
+function tab.prefixAll(t, pre)
+	local t1 = {}
+	for i, v in pairs(t) do
+		if pcall(tostring, v) then 
+			t1[i] = pre .. v
+		end
+	end
+	return t1
+end
+
+function tab.suffixAll(t, suf)
+	local t1 = {}
+	for i, v in pairs(t) do
+		if pcall(tostring, v) then 
+			t1[i] = v .. suf
+		end
+	end
+	return t1
+end
+
+function tab.tostring(t)
+	tab.sort(t)
+	
+	local wtsp = "" -- whitespace
+	local str = ""
+	for i, v in pairs(t) do
+		if typeof(v) == "function" then
+			v = "function"
+		elseif typeof(v) == "table" then
+			v = "table"
+		end
+
+		str ..= "\n\t[" .. i .. "] = " .. v
+		if i ~= #t then
+			str ..= ", "
+		end
+	end
+
+	return "{\n" .. str .. "\n\n}"
+end
+
+
+
+
+
+return tab
