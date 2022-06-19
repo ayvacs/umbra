@@ -1,0 +1,25 @@
+local http = {}
+-- Provides a container of functions that are compatible with the Unified Naming Convention. Support for individual alternative executors to be added.
+
+
+function http.ajax(data: table)
+    return request(data)
+end
+
+function http.get(url: string)
+    return request({
+        ["Method"] = "GET",
+        ["Url"] = tostring(url)
+    }).Body
+end
+
+function http.post(url: string, content: string)
+    return request({
+        ["Method"] = "POST",
+        ["Url"] = tostring(url),
+        ["Body"] = tostring(content)
+    })
+end
+
+
+return http
