@@ -111,6 +111,16 @@ function tab.values(t)
     return t1
 end
 
+function tab.sum(t)
+    local c = 0
+    for i, v in pairs(t) do
+        if type(v) == "number" then
+            c += tonumber(v)
+        end
+    end
+    return c
+end
+
 
 
 
