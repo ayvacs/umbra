@@ -14,7 +14,7 @@ tc = nil
 
 
 -- Functions
-
+local tableEmptyValue = 0-- either this is the only workaround or i'm just retarded as shit
 
 
 function tab.copy(t)
@@ -93,6 +93,22 @@ function tab.tostring(t)
 	end
 
 	return "{\n" .. str .. "\n\n}"
+end
+
+function tab.keys(t)
+    local t1 = {}
+    for i, v in pairs(t) do
+        t1[i] = tableEmptyValue
+    end
+    return t1
+end
+
+function tab.values(t)
+    local t1 = {}
+    for i, v in pairs(t) do
+        t1[#t1+1] = v
+    end
+    return t1
 end
 
 
